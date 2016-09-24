@@ -6,7 +6,7 @@ class Contacts {
     String lastName
     String email
     String phoneNumber
-    Date dob
+    //Date dob
 
     static constraints = {
 
@@ -14,6 +14,6 @@ class Contacts {
         lastName (blank: false, matches: "[a-zA-Z]+")
         email (email: true, unique: true)
         phoneNumber (blank: false, unique: true, matches: "[0-9]")
-        dob (blank: false)
+        //dob (blank: false)
     }
 }
