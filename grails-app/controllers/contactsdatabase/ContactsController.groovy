@@ -23,8 +23,9 @@ class ContactsController {
         println contactsInstance.phoneNumber;
         redirect(action : "list" )
     }
+
     def list() {
 
-        [allCreatedContacts: Contacts.list()]
+        [allCreatedContacts: Contacts.list(sort:"firstName")]
     }
 }
