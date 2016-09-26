@@ -7,6 +7,21 @@
 		<asset:stylesheet src="bootstrap.min.js"/>
 	</head>
 	<body>
-		try list
+		<table class="table table-bordered text-center">
+		    <thead>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+            </thead>
+            <g:each in="${allCreatedContacts}" var="personDetail">
+                <tr>
+                    <td>${personDetail.firstName}</td>
+                    <td>${personDetail.lastName}</td>
+                    <td>${personDetail.email}</td>
+                    <td>${personDetail.phoneNumber}</td>
+                </tr>
+            </g:each>
+        </table>
 	</body>
-</html>r
+</html>

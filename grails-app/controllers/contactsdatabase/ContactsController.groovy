@@ -25,5 +25,6 @@ class ContactsController {
     }
     def list() {
 
+        [allCreatedContacts: Contacts.list()]
     }
 }
