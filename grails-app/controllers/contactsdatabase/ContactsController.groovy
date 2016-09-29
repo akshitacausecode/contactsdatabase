@@ -1,5 +1,7 @@
 package contactsdatabase
 
+import java.text.SimpleDateFormat
+import java.util.Date
 class ContactsController {
 
     def index() {
@@ -9,12 +11,18 @@ class ContactsController {
     def Saving() {
 
         println ">>>>>>>>>"
+        Date dates = Date.parse("yyyy-MM-dd", params.date)
         Contacts contactsInstance = new Contacts([firstName: params.firstName, lastName: params.lastName, email:
-        params.email, phoneNumber: params.phoneNumber])
+        params.email, phoneNumber: params.phoneNumber, dob: dates])
         println params.firstName
-        println contactsInstance.firstName;
+        println "@@@@@@@@@@@@"
+        println params
+        println "###########"
+        println dates
+        println contactsInstance.firstName
 
         contactsInstance.save()
+        println contactsInstance.errors
         if (contactsInstance.hasErrors()) {
             render(view: 'index', model: [user: contactsInstance])
             return
