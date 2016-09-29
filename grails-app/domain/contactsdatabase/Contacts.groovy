@@ -6,7 +6,7 @@ class Contacts {
     String lastName
     String email
     String phoneNumber
-    //Date dob
+    Date dob
 
     static constraints = {
 
