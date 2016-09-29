@@ -63,7 +63,7 @@
                                 precision="day" noSelection="['':'-Choose-']"/>--%>
                                 <input type="date" name="date"/>
                             </div>
-                            
+
                             <g:submitButton name="click here" class="btn btn-md"></g:submitButton>
                         </g:form>
                     </div>
