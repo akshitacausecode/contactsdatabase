@@ -24,12 +24,12 @@ class ContactsController {
         contactsInstance.save()
         println contactsInstance.errors
         if (contactsInstance.hasErrors()) {
-            render(view: 'index', model: [user: contactsInstance])
+            render(view: '/contacts/index', model: [user: contactsInstance])
             return
         }
 
         println contactsInstance.phoneNumber;
-        redirect(action : "list" )
+        redirect(action : "list")
     }
 
     def list() {

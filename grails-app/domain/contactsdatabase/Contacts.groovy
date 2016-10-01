@@ -13,8 +13,9 @@ class Contacts {
         firstName (blank: false, matches: "[a-zA-Z]+")
         lastName (blank: false, matches: "[a-zA-Z]+")
         email (email: true, unique: true)
-        phoneNumber (blank: false, unique: true, matches: "[0-9]+")
-        //dob (blank: false)
+        phoneNumber (blank: false, unique: true, matches: "[0-9+]+", size:10..13)
+        dob (blank: false, date: true)
+        dob max: new Date()
     }
     static mapping = {
         sort firstName: "asc"
