@@ -10,7 +10,6 @@ class ContactsController {
     }
     def Saving() {
 
-        println ">>>>>>>>>"
         Date dates = Date.parse("yyyy-MM-dd", params.date)
         Contacts contactsInstance = new Contacts([firstName: params.firstName, lastName: params.lastName, email:
         params.email, phoneNumber: params.phoneNumber, dob: dates]) //passing map

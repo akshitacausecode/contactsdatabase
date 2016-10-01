@@ -17,6 +17,7 @@ class Contacts {
         dob (blank: false, date: true)
         dob max: new Date()
     }
+
     static mapping = {
         sort firstName: "asc"
         dob type: 'date'

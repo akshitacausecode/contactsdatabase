@@ -9,7 +9,7 @@
                     <h2>CREATE CONTACT</h2><hr>
                 </div>
             </div>
-            <div class="col-md-offset-1 col-md-4 col-xs-offset-4 col-xs-12">
+            <div class="col-md-offset-1 col-md-4 col-xs-12">
                 <div class="well top-mrgn">
                     <div class="addContact">
                         <h3>ENTER DETAILS</h3>
