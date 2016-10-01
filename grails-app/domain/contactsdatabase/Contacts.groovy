@@ -19,5 +19,7 @@ class Contacts {
     }
     static mapping = {
         sort firstName: "asc"
+        dob type: 'date'
+
     }
 }

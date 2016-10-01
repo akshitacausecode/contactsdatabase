@@ -20,6 +20,7 @@
                         <th>Last Name</th>
                         <th>Email</th>
                         <th>Phone Number</th>
+                        <th>Date of Birth</th>
                     </thead>
                     <g:if test="${allCreatedContacts}">
                         <g:each in="${allCreatedContacts}" var="personDetail">
@@ -28,6 +29,7 @@
                                 <td>${personDetail.lastName}</td>
                                 <td>${personDetail.email}</td>
                                 <td>${personDetail.phoneNumber}</td>
+                                <td>${personDetail.dob}</td>
                             </tr>
                         </g:each>
                     </g:if>
