@@ -6,7 +6,7 @@
 	    <content tag="body">
             <div class="row">
                 <div class="col-md-offset-1 col-md-8">
-                    <h2>Create a Contact</h2><hr>
+                    <h2>CREATE CONTACT</h2><hr>
                 </div>
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-offset-4 col-xs-12">
@@ -39,7 +39,6 @@
                                 <g:renderErrors bean="${user}" field="phoneNumber" />
                             </div>
                             <div class="form-group ${hasErrors(bean: user, field: 'data', 'has-error')}">
-
                                 <label>Select Date Of Birth :</label><input type="date" class="font-clr" name="date" value="${user.dob}" required/>
                                 <g:renderErrors bean="${user}" field="dob" />
                             </div>

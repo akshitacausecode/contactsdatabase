@@ -9,7 +9,7 @@
 		<g:layoutHead/>
 	</head>
 	<body>
-        <nav class="navbar navbar-default navbar-fixed-top">
+        <nav class="navbar navbar-default">
             <div class="container-fluid">
                 <div class="navbar-header">
                     <a class="navbar-brand" href="#">CONTACT DATABASE</a>
@@ -21,8 +21,6 @@
             </ul>
           </div>
         </nav>
-
-
         <div class="container-fluid">
             <div id="body">
                 <g:pageProperty name="page.body"/>
