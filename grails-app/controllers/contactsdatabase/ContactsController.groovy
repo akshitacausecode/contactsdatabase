@@ -13,27 +13,24 @@ class ContactsController {
         println ">>>>>>>>>"
         Date dates = Date.parse("yyyy-MM-dd", params.date)
         Contacts contactsInstance = new Contacts([firstName: params.firstName, lastName: params.lastName, email:
-        params.email, phoneNumber: params.phoneNumber, dob: dates])
-        println params.firstName
-        println "@@@@@@@@@@@@"
-        println params
-        println "###########"
-        println dates
-        println contactsInstance.firstName
+        params.email, phoneNumber: params.phoneNumber, dob: dates]) //passing map
 
-        contactsInstance.save()
+        contactsInstance.save() //saves to database
+
         println contactsInstance.errors
+
         if (contactsInstance.hasErrors()) {
             render(view: '/contacts/index', model: [user: contactsInstance])
             return
         }
-
-        println contactsInstance.phoneNumber;
+        //flash message is displayed when values are stored into database
+        flash.message = "Contact details have been successfully saved!!!"
         redirect(action : "list")
     }
 
     def list() {
 
+        //to list contacts in ascending order
         [allCreatedContacts: Contacts.list(sort:"firstName")]
     }
 }

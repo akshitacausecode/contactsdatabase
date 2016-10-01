@@ -4,11 +4,13 @@
 	</head>
 	<body>
         <content tag="body">
-        <g:if test="${flash.message}" style="display: block">
-                            <div class="text-center bg-primary">
-                                ${flash.message}
-                            </div>
-                        </g:if>
+
+            <g:if test="${flash.message}" style="display: block">
+                <div class="text-center bg-primary">
+                    ${flash.message}
+                </div>
+            </g:if>
+
             <div class="row">
                 <div class="col-md-offset-1 col-md-8">
                     <h2>LIST OF CONTACTS</h2><hr>
@@ -33,6 +35,7 @@
                     </table>
                 </div>
             </div>
+
         </content>
 	</body>
 </html>
