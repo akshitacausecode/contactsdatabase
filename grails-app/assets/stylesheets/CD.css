@@ -1,0 +1,63 @@
+.navbar {
+    min-height: 54px;
+}
+
+.navbar-default {
+        background-color:#122b40;
+        color: white;
+}
+
+.navbar-brand {
+    color: #f5f5f5;
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover,
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+    color: white;
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: #d9edf7;
+}
+
+.well {
+    background-color:#122b40;
+    color: white;
+}
+
+.main-padding {
+    padding: 10%;
+}
+
+.top-mrgn {
+    margin-top: 5%;
+}
+
+.table-bordered > thead > tr > th, .table-bordered > tbody > tr > td {
+    border: 2px solid navy;
+}
+
+.table-bordered {
+    border: 4px solid navy;
+}
+
+thead {
+    background-color: aliceblue;
+    text-align: center;
+}
+
+th {
+    text-align: center;
+}
+
+.aln-ctr {
+    text-align: center;
+}
+
+.font-clr {
+    color: black;
+}
+
+.addContact .form-group ul li {
+    list-style: none;
+}

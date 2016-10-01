@@ -1,51 +1,32 @@
-<!doctype html>
-<html lang="en" class="no-js">
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <title>
-        <g:layoutTitle default="Grails"/>
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <asset:stylesheet src="application.css"/>
-
-    <g:layoutHead/>
-</head>
-<body>
-
-    <div class="navbar navbar-default navbar-static-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/#">
-                    <i class="fa grails-icon">
-                        <asset:image src="grails-cupsonly-logo-white.svg"/>
-                    </i> Grails
-                </a>
+<html>
+	<head>
+		<title>CONTACT DATABASE</title>
+		<asset:stylesheet href="bootstrap.css"/>
+		<asset:stylesheet href="font-awesome.min.css"/>
+		<asset:stylesheet src="jquery.css"/>
+		<asset:stylesheet src="font-awesome.min.css"/>
+		<asset:stylesheet src="bootstrap.min.js"/>
+		<asset:stylesheet href="CD.css"/>
+	</head>
+	<body>
+        <div class="container-fluid well">
+            <h1 align="center">CONTACT DATABASE</h1>
+        </div>
+        <div class="box-model main-padding">
+            <div class="col-md-offset-1 col-md-5 col-xs-offset-1 col-xs-11 well">
+                <div class="aln-ctr">
+                    <h3>CLICK BELOW TO LIST CONTACTS</h3>
+                    <a href="/contacts/list">
+                        <button type="button" class="btn btn-success btn-lg">LIST</button>
+                    </a>
+                </div>
             </div>
-            <div class="navbar-collapse collapse" aria-expanded="false" style="height: 0.8px;">
-                <ul class="nav navbar-nav navbar-right">
-                    <g:pageProperty name="page.nav" />
-                </ul>
+            <div class="col-md-offset-1 col-md-5 col-xs-offset-1 col-xs-11 well">
+                <div class="aln-ctr">
+                    <h3>CLICK BELOW TO ADD CONTACTS</h3>
+                    <a href="/contacts/index"><button type="button" class="btn btn-success btn-lg"> ADD CONTACTS</button></a>
+                </div>
             </div>
         </div>
-    </div>
-
-    <g:layoutBody/>
-
-    <div class="footer" role="contentinfo"></div>
-
-    <div id="spinner" class="spinner" style="display:none;">
-        <g:message code="spinner.alt" default="Loading&hellip;"/>
-    </div>
-
-    <asset:javascript src="application.js"/>
-
-</body>
+   </body>
 </html>

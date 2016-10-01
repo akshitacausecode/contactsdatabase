@@ -1,27 +1,38 @@
 <html>
 	<head>
-		<title>create</title>
-		<asset:stylesheet href="bootstrap.css"/>
-		<asset:stylesheet href="font-awesome.min.css"/>
-		<asset:stylesheet src="jquery.css"/>
-		<asset:stylesheet src="bootstrap.min.js"/>
+        <meta name="layout" content="head.gsp">
 	</head>
 	<body>
-		<table class="table table-bordered text-center">
-		    <thead>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Email</th>
-                <th>Phone Number</th>
-            </thead>
-            <g:each in="${allCreatedContacts}" var="personDetail">
-                <tr>
-                    <td>${personDetail.firstName}</td>
-                    <td>${personDetail.lastName}</td>
-                    <td>${personDetail.email}</td>
-                    <td>${personDetail.phoneNumber}</td>
-                </tr>
-            </g:each>
-        </table>
+        <content tag="body">
+        <g:if test="${flash.message}" style="display: block">
+                            <div class="text-center bg-primary">
+                                ${flash.message}
+                            </div>
+                        </g:if>
+            <div class="row">
+                <div class="col-md-offset-1 col-md-8">
+                    <h2>LIST OF CONTACTS</h2><hr>
+                    <table class="table table-bordered text-center top-mrgn">
+                        <thead>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Email</th>
+                        <th>Phone Number</th>
+                    </thead>
+                    <g:if test="${allCreatedContacts}">
+                        <g:each in="${allCreatedContacts}" var="personDetail">
+                            <tr>
+                                <td>${personDetail.firstName}</td>
+                                <td>${personDetail.lastName}</td>
+                                <td>${personDetail.email}</td>
+                                <td>${personDetail.phoneNumber}</td>
+                            </tr>
+                        </g:each>
+                    </g:if>
+                    <g:else><h3>OOPS!!!!!! DATABASE IS EMPTY!!!!</h3></g:else>
+                    </table>
+                </div>
+            </div>
+        </content>
 	</body>
 </html>
