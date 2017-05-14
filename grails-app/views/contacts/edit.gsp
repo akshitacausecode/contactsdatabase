@@ -13,7 +13,7 @@
                 <div class="well top-mrgn">
                     <div class="addContact">
                         <h3>ENTER DETAILS</h3>
-                        <g:form controller="Contacts" action="Saving">
+                        <g:form controller="Contacts" action="update">
 
                             <input type="hidden" name="id" value="${editContact.id}">
 
