@@ -37,6 +37,35 @@ class ContactsController {
 
         def editContact = Contacts.get(params.id)
 
+        if (editContact.hasErrors()) {
+            render(view: '/contacts/edit', model: [editContact: editContact])
+            return
+        }
+
         [editContact: editContact]
+    }
+
+    def update() {
+
+        println params
+
+        Contacts updateContact = Contacts.get(params.id)
+        Date dates = Date.parse("yyyy-MM-dd", params.date)
+        updateContact.firstName = params.firstName
+        updateContact.lastName = params.lastName
+        updateContact.email = params.email
+        updateContact.phoneNumber = params.phoneNumber
+        updateContact.dob = dates
+        updateContact.save(flush: true)
+
+        print("+++++update ends here++++")
+
+        redirect (action: 'show', id: params.id)
+    }
+
+    def show() {
+
+        Contacts contactDisplay = Contacts.get(params.id)
+        return [contactDisplay: contactDisplay]
     }
 }

@@ -6,7 +6,7 @@
 	    <content tag="body">
             <div class="row">
                 <div class="col-md-offset-1 col-md-8">
-                    <h2>CREATE CONTACT</h2><hr>
+                    <h2>EDIT CONTACT DETAILS</h2><hr>
                 </div>
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12">
@@ -46,7 +46,7 @@
                                 value="${editContact.dob}" required/>
                                 <g:renderErrors bean="${editContact}" field="dob" />
                             </div>
-                            <g:submitButton name="Add User" class="btn btn-success"></g:submitButton>
+                            <g:submitButton name="Update Details" class="btn btn-success"></g:submitButton>
                         </g:form>
                         </div>
                     </div>
@@ -54,3 +54,4 @@
             </div>
         </content>
 	</body>
+</html>
