@@ -21,6 +21,8 @@
                         <th>Email</th>
                         <th>Phone Number</th>
                         <th>Date of Birth</th>
+                        <th>EDIT</th>
+                        <th>DELETE</th>
                     </thead>
                     <g:if test="${allCreatedContacts}">
                         <g:each in="${allCreatedContacts}" var="personDetail">
@@ -33,6 +35,10 @@
                                 <td>
                                 <g:link controller="Contacts" action="edit" id="${personDetail.id}"
                                 class="text-color">Edit</g:link>
+                                </td>
+                                <td>
+                                  <g:link controller="Contacts" action="delete" id="${personDetail.id}"
+                                    class="text-color">Delete</g:link>
                                 </td>
                             </tr>
                         </g:each>

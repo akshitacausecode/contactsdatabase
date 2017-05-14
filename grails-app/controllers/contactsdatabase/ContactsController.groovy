@@ -68,4 +68,11 @@ class ContactsController {
         Contacts contactDisplay = Contacts.get(params.id)
         return [contactDisplay: contactDisplay]
     }
+
+    def delete() {
+
+        Contacts deleteContact = Contacts.get(params.id)
+        deleteContact.delete(flush: true)
+        redirect(action: 'list')
+    }
 }
