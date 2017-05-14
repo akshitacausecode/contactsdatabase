@@ -30,6 +30,10 @@
                                 <td>${personDetail.email}</td>
                                 <td>${personDetail.phoneNumber}</td>
                                 <td>${personDetail.dob}</td>
+                                <td>
+                                <g:link controller="Contacts" action="edit" id="${personDetail.id}"
+                                class="text-color">Edit</g:link>
+                                </td>
                             </tr>
                         </g:each>
                     </g:if>

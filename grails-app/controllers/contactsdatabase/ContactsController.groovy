@@ -32,4 +32,11 @@ class ContactsController {
         //to list contacts in ascending order
         [allCreatedContacts: Contacts.list(sort:"firstName")]
     }
+
+    def edit() {
+
+        def editContact = Contacts.get(params.id)
+
+        [editContact: editContact]
+    }
 }
