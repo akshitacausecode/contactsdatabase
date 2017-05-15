@@ -2,8 +2,11 @@ package contactsdatabase
 
 import java.text.SimpleDateFormat
 import java.util.Date
+import grails.plugin.springsecurity.SpringSecurityService
+import grails.plugin.springsecurity.annotation.Secured
 class ContactsController {
 
+    @Secured(["ROLE_USER"])
     def index() {
 
         [user: new Contacts()]
