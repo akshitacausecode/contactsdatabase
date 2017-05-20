@@ -11,6 +11,8 @@ class ContactsController {
 
         [user: new Contacts()]
     }
+
+    @Secured(["ROLE_USER"])
     def Saving() {
 
         Date dates = Date.parse("yyyy-MM-dd", params.date)
@@ -30,12 +32,14 @@ class ContactsController {
         redirect(action : "list")
     }
 
+    @Secured(["ROLE_USER"])
     def list() {
 
         //to list contacts in ascending order
         [allCreatedContacts: Contacts.list(sort:"firstName")]
     }
 
+    @Secured(["ROLE_USER"])
     def edit() {
 
         def editContact = Contacts.get(params.id)
@@ -48,6 +52,7 @@ class ContactsController {
         [editContact: editContact]
     }
 
+    @Secured(["ROLE_USER"])
     def update() {
 
         println params
@@ -66,12 +71,14 @@ class ContactsController {
         redirect (action: 'show', id: params.id)
     }
 
+    @Secured(["ROLE_USER"])
     def show() {
 
         Contacts contactDisplay = Contacts.get(params.id)
         return [contactDisplay: contactDisplay]
     }
 
+    @Secured(["ROLE_USER"])
     def delete() {
 
         Contacts deleteContact = Contacts.get(params.id)
