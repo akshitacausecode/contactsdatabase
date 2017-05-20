@@ -18,6 +18,7 @@
               <li><a href="/"><i class="fa fa-user fa-fw"></i>HOME</a></li>
               <li><a href="/contacts/index"><i class="fa fa-plus fa-fw"></i>ADD CONTACTS</a></li>
               <li><a href="/contacts/list"><i class="fa fa-list fa-fw"></i>LIST CONTACTS</a></li>
+              <li><g:link controller="logout"><i class="fa fa-sign-out fa-fw"></i>Logout</g:link>
             </ul>
           </div>
         </nav>

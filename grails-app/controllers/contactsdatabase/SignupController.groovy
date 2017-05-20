@@ -24,7 +24,7 @@ class SignupController {
             userInstance.save()
 
             println "^^^^^+++++^^^"
-            
+
             Role roleAdmin = Role.findByAuthority('ROLE_ADMIN')
             println roleAdmin
             UserRole.create(userInstance, roleAdmin)
