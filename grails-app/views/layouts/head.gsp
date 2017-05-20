@@ -15,7 +15,7 @@
                     <a class="navbar-brand" href="#">CONTACT DATABASE</a>
                 </div>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="main"><i class="fa fa-user fa-fw"></i>HOME</a></li>
+              <li><a href="/"><i class="fa fa-user fa-fw"></i>HOME</a></li>
               <li><a href="/contacts/index"><i class="fa fa-plus fa-fw"></i>ADD CONTACTS</a></li>
               <li><a href="/contacts/list"><i class="fa fa-list fa-fw"></i>LIST CONTACTS</a></li>
             </ul>
