@@ -24,11 +24,7 @@ class SignupController {
             userInstance.save()
 
             println "^^^^^+++++^^^"
-
-        /*Map contactDetails = [username: params.username, password: params.password]
-        User newUserContact = new User(contactDetails)
-        newUserContact.save() */
-
+            
             Role roleAdmin = Role.findByAuthority('ROLE_ADMIN')
             println roleAdmin
             UserRole.create(userInstance, roleAdmin)
