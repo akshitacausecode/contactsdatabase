@@ -1,7 +1,7 @@
 <html>
 	<head>
         <meta name="layout" content="head.gsp">
-	</head>
+    </head>
 	<body>
         <content tag="body">
 
@@ -38,7 +38,7 @@
                                 </td>
                                 <td>
                                   <g:link controller="Contacts" action="delete" id="${personDetail.id}"
-                                    class="text-color">Delete</g:link>
+                                  class="text-color" onclick="return confirm ('Are you sure?')">Delete</g:link>
                                 </td>
                             </tr>
                         </g:each>
