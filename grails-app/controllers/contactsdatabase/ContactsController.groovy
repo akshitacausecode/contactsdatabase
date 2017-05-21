@@ -9,6 +9,12 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def index() {
 
+        //[user: new Contacts()]
+    }
+
+    @Secured(["ROLE_USER"])
+    def addContact() {
+
         [user: new Contacts()]
     }
 
@@ -43,6 +49,12 @@ class ContactsController {
     def edit() {
 
         def editContact = Contacts.get(params.id)
+
+        /*if (editContact.hasErrors()) {
+            render(view: '/contacts/edit', model: [user: editContact])
+            return
+        }*/
+
         [editContact: editContact]
     }
 
@@ -61,7 +73,9 @@ class ContactsController {
         updateContact.save(flush: true)
 
         if (updateContact.hasErrors()) {
-            render(view: '/contacts/edit', model: [user: updateContact, editContact: updateContact])
+            [editContact: updateContact]
+            render(view: '/contacts/edit', model: [user: updateContact, editContact:updateContact])
+
             return
         }
 
