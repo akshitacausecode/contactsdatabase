@@ -17,34 +17,34 @@
 
                             <input type="hidden" name="id" value="${editContact.id}">
 
-                            <div class="form-group ${hasErrors(bean: editContact, field: 'firstName', 'has-error')}">
+                            <div class="form-group ${hasErrors(bean: user, field: 'firstName', 'has-error')}">
                                 <g:textField name="firstName" placeholder="First Name" class="form-control"
                                     value="${editContact.firstName}" autofocus="firstName" required="true">
                                 </g:textField>
-                                <g:renderErrors bean="${editContact}" field="firstName" />
+                                <g:renderErrors bean="${user}" field="firstName" />
                             </div>
-                            <div class="form-group ${hasErrors(bean: editContact, field: 'lastName', 'has-error')}">
+                            <div class="form-group ${hasErrors(bean: user, field: 'lastName', 'has-error')}">
                                 <g:textField name="lastName" placeholder="Last Name" class="form-control"
                                     value="${editContact.lastName}" autofocus="lastName" required="true">
                                 </g:textField>
-                                <g:renderErrors bean="${editContact}" field="lastName" />
+                                <g:renderErrors bean="${user}" field="lastName" />
                             </div>
-                            <div class="form-group ${hasErrors(bean: editContact, field: 'email', 'has-error')}">
+                            <div class="form-group ${hasErrors(bean: user, field: 'email', 'has-error')}">
                                 <g:textField name="email" placeholder="Email" class="form-control"
                                 value="${editContact.email}" autofocus="email" required="true">
                                 </g:textField>
-                                <g:renderErrors bean="${editContact}" field="email" />
+                                <g:renderErrors bean="${user}" field="email" />
                             </div>
-                            <div class="form-group ${hasErrors(bean: editContact, field: 'phoneNumber', 'has-error')}">
+                            <div class="form-group ${hasErrors(bean: user, field: 'phoneNumber', 'has-error')}">
                                 <g:textField name="phoneNumber" placeholder="Phone Number" class="form-control"
                                 value="${editContact.phoneNumber}" autofocus="phoneNumber" required="true">
                                 </g:textField>
-                                <g:renderErrors bean="${editContact}" field="phoneNumber" />
+                                <g:renderErrors bean="${user}" field="phoneNumber" />
                             </div>
-                            <div class="form-group ${hasErrors(bean: editContact, field: 'data', 'has-error')}">
+                            <div class="form-group ${hasErrors(bean: user, field: 'data', 'has-error')}">
                                 <label>Select Date Of Birth :</label><input type="date" class="font-clr" name="date"
                                 value="${editContact.dob}" required/>
-                                <g:renderErrors bean="${editContact}" field="dob" />
+                                <g:renderErrors bean="${user}" field="dob" />
                             </div>
                             <g:submitButton name="Update Details" class="btn btn-success"></g:submitButton>
                         </g:form>

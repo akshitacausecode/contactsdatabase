@@ -43,12 +43,6 @@ class ContactsController {
     def edit() {
 
         def editContact = Contacts.get(params.id)
-
-        if (editContact.hasErrors()) {
-            render(view: '/contacts/edit', model: [editContact: editContact])
-            return
-        }
-
         [editContact: editContact]
     }
 
@@ -65,6 +59,11 @@ class ContactsController {
         updateContact.phoneNumber = params.phoneNumber
         updateContact.dob = dates
         updateContact.save(flush: true)
+
+        if (updateContact.hasErrors()) {
+            render(view: '/contacts/edit', model: [user: updateContact, editContact: updateContact])
+            return
+        }
 
         print("+++++update ends here++++")
 
