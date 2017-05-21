@@ -32,7 +32,8 @@ class SignupController {
             println roleUser
             UserRole.create(userInstance, roleUser)
 
-            redirect(controller: 'login', action: 'index')
+            flash.message = "Welcome!\nYour username is: ${userInstance.username}" + "\n please login to continue"
+            redirect(controller: 'login', action: 'auth')
         }
     }
 
