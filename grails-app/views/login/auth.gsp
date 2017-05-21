@@ -1,6 +1,6 @@
 <html>
 <head>
-	<meta name="layout" content="${gspLayout ?: 'main'}"/>
+	<meta name="layout" content="head.gsp"/>
 	<title><g:message code='springSecurity.login.title'/></title>
 	<style type="text/css" media="screen">
 	#login {
@@ -85,6 +85,7 @@
 </head>
 
 <body>
+    <content tag="body">
 <div id="login">
 	<div class="inner">
 		<div class="fheader"><g:message code='springSecurity.login.header'/></div>
@@ -92,7 +93,7 @@
 		<g:if test='${flash.message}'>
 			<div class="login_message">${flash.message}</div>
 		</g:if>
-		
+
 		<form action="${postUrl ?: '/login/authenticate'}" method="POST" id="loginForm" class="cssform" autocomplete="off">
 			<p>
 				<label for="username"><g:message code='springSecurity.login.username.label'/>:</label>
@@ -115,10 +116,12 @@
 		</form>
 	</div>
 </div>
+</content>
 <script>
 (function() {
 	document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
 })();
 </script>
+
 </body>
 </html>
