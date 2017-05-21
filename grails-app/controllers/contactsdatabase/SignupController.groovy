@@ -9,7 +9,8 @@ class SignupController {
 
     @Secured('permitAll')
     def index() {
-        println "^^^^^^^^"
+        println "enters signup/index"
+        //[user: new Contacts()]
     }
 
     @Secured('permitAll')
@@ -23,19 +24,24 @@ class SignupController {
             userInstance = new User([username: params.username, password: params.password])
             userInstance.save()
 
-            println "^^^^^+++++^^^"
+            println ">>>><<<"
+            println params.errors
 
-            Role roleAdmin = Role.findByAuthority('ROLE_ADMIN')
-            println roleAdmin
-            UserRole.create(userInstance, roleAdmin)
-            Role roleUser = Role.findByAuthority('ROLE_USER')
-            println roleUser
-            UserRole.create(userInstance, roleUser)
+            if (userInstance.hasErrors()) {
+                render(view: '/signup/index', model: [user: userInstance])
+                return
+            }
+            println "no errors"
 
-            flash.message = "Welcome!\nYour username is: ${userInstance.username}" + "\n please login to continue"
-            redirect(controller: 'login', action: 'auth')
+                Role roleAdmin = Role.findByAuthority('ROLE_ADMIN')
+                println roleAdmin
+                UserRole.create(userInstance, roleAdmin)
+                Role roleUser = Role.findByAuthority('ROLE_USER')
+                println roleUser
+                UserRole.create(userInstance, roleUser)
+
+                flash.message = "Welcome!\nYour username is: ${userInstance.username}" + "\n please login to continue"
+                redirect(controller: 'login', action: 'auth')
+            }
         }
     }
-
-
-}
