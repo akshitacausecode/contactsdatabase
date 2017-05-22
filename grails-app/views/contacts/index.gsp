@@ -8,6 +8,8 @@
         <div class="container-fluid well">
             <h3 align="center">CONTACT DATABASE</h1>
         </div>
+        <h4 align="center">Welcome, ${user.username} !</h4>
+        <hr>
         <div class="box-model main-padding">
             <div class="col-md-offset-1 col-md-5 col-xs-offset-1 col-xs-11 well">
                 <div class="aln-ctr">
