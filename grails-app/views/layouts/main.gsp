@@ -7,6 +7,7 @@
 		<asset:stylesheet src="font-awesome.min.css"/>
 		<asset:stylesheet src="bootstrap.min.js"/>
 		<asset:stylesheet href="CD.css"/>
+		<g:layoutHead/>
 
 	</head>
 	<body>
