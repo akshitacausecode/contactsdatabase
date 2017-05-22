@@ -23,6 +23,8 @@
                         <dt>Date Of Birth:</dt>
                         <dd>${contactDisplay.dob}</dd>
                     </dl>
+                </div>
+            </div>
         </content>
 	</body>
 </html>

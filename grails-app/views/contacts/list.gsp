@@ -47,7 +47,6 @@
                     </table>
                 </div>
             </div>
-
         </content>
 	</body>
 </html>
