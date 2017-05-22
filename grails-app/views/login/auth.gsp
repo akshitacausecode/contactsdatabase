@@ -1,6 +1,6 @@
 <html>
 <head>
-	<meta name="layout" content="head.gsp"/>
+	<meta name="layout" content="main"/>
 	<title><g:message code='springSecurity.login.title'/></title>
 	<style type="text/css" media="screen">
 	#login {
@@ -85,7 +85,9 @@
 </head>
 
 <body>
-    <content tag="body">
+<div class="container-fluid well">
+            <h3 align="center">CONTACT DATABASE</h1>
+        </div>
 <div id="login">
 	<div class="inner">
 		<div class="fheader"><g:message code='springSecurity.login.header'/></div>
@@ -114,9 +116,12 @@
 				<input type="submit" id="submit" value="${message(code: 'springSecurity.login.button')}"/>
 			</p>
 		</form>
+		<br><p>
+		    <center><a href="/signup/" class="btn btn-primary" role="button">Dont have an account? Signup!</a></center>
+	    </p>
 	</div>
 </div>
-</content>
+
 <script>
 (function() {
 	document.forms['loginForm'].elements['${usernameParameter ?: 'username'}'].focus();
