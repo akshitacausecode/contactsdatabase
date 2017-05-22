@@ -1,15 +1,21 @@
 package contactsdatabase
 
+import com.contactsdatabase.User
+
 import java.text.SimpleDateFormat
 import java.util.Date
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 class ContactsController {
 
+    def springSecurityService
+
     @Secured(["ROLE_USER"])
     def index() {
 
-        //[user: new Contacts()]
+        User userInstance = springSecurityService.getCurrentUser()
+        println(userInstance)
+        [user: userInstance]
     }
 
     @Secured(["ROLE_USER"])
@@ -30,7 +36,7 @@ class ContactsController {
         println contactsInstance.errors
 
         if (contactsInstance.hasErrors()) {
-            render(view: '/contacts/index', model: [user: contactsInstance])
+            render(view: '/contacts/addContact', model: [user: contactsInstance])
             return
         }
         //flash message is displayed when values are stored into database
@@ -49,12 +55,6 @@ class ContactsController {
     def edit() {
 
         def editContact = Contacts.get(params.id)
-
-        /*if (editContact.hasErrors()) {
-            render(view: '/contacts/edit', model: [user: editContact])
-            return
-        }*/
-
         [editContact: editContact]
     }
 
@@ -62,7 +62,6 @@ class ContactsController {
     def update() {
 
         println params
-
         Contacts updateContact = Contacts.get(params.id)
         Date dates = Date.parse("yyyy-MM-dd", params.date)
         updateContact.firstName = params.firstName
@@ -78,9 +77,7 @@ class ContactsController {
 
             return
         }
-
         print("+++++update ends here++++")
-
         redirect (action: 'show', id: params.id)
     }
 
