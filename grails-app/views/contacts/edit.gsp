@@ -35,6 +35,19 @@
                                 </g:textField>
                                 <g:renderErrors bean="${user}" field="email" />
                             </div>
+                           <div class="form-group col-md-6 col-sm-6 col-xs-12 ${hasErrors(bean: user, field:'markData',
+                            'has-error')}">
+                                <label for="markData">Marking</label>
+                                <select name="markData" id="markData" class="form-control" value="${editContact.markData}">
+                                    <option value="Regular"> Mark contact as</option>
+                                    <option value="Favorite">Favorite</option>
+                                    <option value="Vip">VIP</option>
+                                    <option value="Friend">Friend</option>
+                                    <option value="Regular"> Regular</option>
+                                </select>
+                                <g:renderErrors bean="${user}" field="markData"/>
+                            </div>
+
                             <div class="form-group ${hasErrors(bean: user, field: 'phoneNumber', 'has-error')}">
                                 <g:textField name="phoneNumber" placeholder="Phone Number" class="form-control"
                                 value="${editContact.phoneNumber}" autofocus="phoneNumber" required="true">

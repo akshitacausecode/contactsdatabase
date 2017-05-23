@@ -18,6 +18,8 @@
                         <dd>${contactDisplay.lastName}</dd>
                         <dt>E-mail:</dt>
                         <dd>${contactDisplay.email}</dd>
+                        <dt>Marking</dt>
+                        <dd>${contactDisplay.markData}</dd>
                         <dt>Phone Number:</dt>
                         <dd>${contactDisplay.phoneNumber}</dd>
                         <dt>Date Of Birth:</dt>

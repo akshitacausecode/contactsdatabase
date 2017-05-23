@@ -68,6 +68,7 @@ class ContactsController {
         updateContact.firstName = params.firstName
         updateContact.lastName = params.lastName
         updateContact.email = params.email
+        updateContact.markData = params.markData
         updateContact.phoneNumber = params.phoneNumber
         updateContact.dob = dates
         updateContact.save(flush: true)
