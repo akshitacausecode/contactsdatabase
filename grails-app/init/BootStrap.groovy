@@ -6,23 +6,15 @@ class BootStrap {
 
     def init = { servletContext ->
 
-        List<String> roles = ["ROLE_ADMIN", "ROLE_USER"]
-        roles.each { roleName ->
-            Role.findOrSaveByAuthority(roleName)
-        }
+        def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
+        def user = new User(username: 'demo@gmail.com', password: 'demo').save(flush: true)
 
-        User userInstance = User.findByUsername("admin")
-        if(!userInstance) {
-            userInstance = new User([username: "admin", password: "admin"])
-            userInstance.save()
-            Role roleAdmin = Role.findByAuthority('ROLE_ADMIN')
-            println roleAdmin
-            UserRole.create(userInstance, roleAdmin)
-            Role roleUser = Role.findByAuthority('ROLE_USER')
-            println roleUser
-            UserRole.create(userInstance, roleUser)
-        }
+        UserRole.create user, userRole
 
+        UserRole.withSession {
+            it.flush()
+            it.clear()
+        }
     }
     def destroy = {
     }

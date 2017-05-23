@@ -28,7 +28,7 @@ class ContactsController {
     def Saving() {
 
         Date dates = Date.parse("yyyy-MM-dd", params.date)
-        Contacts contactsInstance = new Contacts([firstName: params.firstName, lastName: params.lastName, email:
+        Contacts contactsInstance = new Contacts([userInstance: springSecurityService.currentUser.id,firstName: params.firstName, lastName: params.lastName, email:
         params.email, phoneNumber: params.phoneNumber, dob: dates]) //passing map
 
         contactsInstance.save() //saves to database
@@ -47,8 +47,7 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def list() {
 
-        //to list contacts in ascending order
-        [allCreatedContacts: Contacts.list(sort:"firstName")]
+            [allCreatedContacts: Contacts.list(sort:"firstName")]
     }
 
     @Secured(["ROLE_USER"])
@@ -94,5 +93,24 @@ class ContactsController {
         Contacts deleteContact = Contacts.get(params.id)
         deleteContact.delete(flush: true)
         redirect(action: 'list')
+    }
+
+    @Secured(["ROLE_USER"])
+    def filterResult() {
+
+        if(params.id == "1") {
+            println "GBSDGBSBNSG34567"
+            println params
+
+            List s = params.value.split(" ") //if user enters full name
+            String fn = s[0]
+            String ln = s[1]
+
+            List match = Contacts.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
+                    "%${params.value}%", "%${params.value}")
+            render(view: '/contacts/list', model: [allCreatedContacts: match])
+        } else {
+            redirect(action: 'list')
+        }
     }
 }

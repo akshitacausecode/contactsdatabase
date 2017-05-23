@@ -14,6 +14,10 @@
             <div class="row">
                 <div class="col-md-offset-1 col-md-8">
                     <h2>LIST OF CONTACTS</h2><hr>
+                    <g:form name="filter" id="1" controller="Contacts" action="filterResult" style="display:inline-flex">
+                        <g:textField name="value" placeholder="search here:" class="form-control ph"/>
+                        <g:submitButton name="search" class="btn btn-primary btn-style" value="Search"/>
+                    </g:form>
                     <table class="table table-bordered text-center top-mrgn">
                         <thead>
                         <th>First Name</th>
@@ -43,7 +47,7 @@
                             </tr>
                         </g:each>
                     </g:if>
-                    <g:else><h3>OOPS!!!!!! DATABASE IS EMPTY!!!!</h3></g:else>
+                    <g:else><h3>ENTER VALID CONTENT!!!!</h3></g:else>
                     </table>
                 </div>
             </div>

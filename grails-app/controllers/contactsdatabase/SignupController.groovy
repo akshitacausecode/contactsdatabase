@@ -39,9 +39,6 @@ class SignupController {
             }
             println "no errors"
 
-            Role roleAdmin = Role.findByAuthority('ROLE_ADMIN')
-            println roleAdmin
-            UserRole.create(userInstance, roleAdmin)
             Role roleUser = Role.findByAuthority('ROLE_USER')
             println roleUser
             UserRole.create(userInstance, roleUser)

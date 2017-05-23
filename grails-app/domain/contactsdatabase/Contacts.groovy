@@ -1,7 +1,10 @@
 package contactsdatabase
 
+import com.contactsdatabase.User
+
 class Contacts {
 
+    User userInstance
     String firstName
     String lastName
     String email
