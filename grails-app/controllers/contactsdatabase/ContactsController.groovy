@@ -21,15 +21,17 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def addContact() {
 
-        [user: new Contacts()]
+        [user: new Contacts2()]
     }
 
     @Secured(["ROLE_USER"])
     def Saving() {
 
         Date dates = Date.parse("yyyy-MM-dd", params.date)
-        Contacts contactsInstance = new Contacts([userInstance: springSecurityService.currentUser.id,firstName: params.firstName, lastName: params.lastName, email:
-        params.email, phoneNumber: params.phoneNumber, dob: dates]) //passing map
+
+        Contacts2 contactsInstance = new Contacts2([userInstance: springSecurityService.currentUser.id,firstName: params.firstName,
+                                    lastName: params.lastName, email: params.email, phoneNumber: params.phoneNumber,
+                                    dob: dates, markData: params.markData]) //passing map
 
         contactsInstance.save() //saves to database
 
@@ -47,13 +49,13 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def list() {
 
-            [allCreatedContacts: Contacts.list(sort:"firstName")]
+            [allCreatedContacts: Contacts2.list(sort:"firstName")]
     }
 
     @Secured(["ROLE_USER"])
     def edit() {
 
-        def editContact = Contacts.get(params.id)
+        def editContact = Contacts2.get(params.id)
         [editContact: editContact]
     }
 
@@ -61,7 +63,7 @@ class ContactsController {
     def update() {
 
         println params
-        Contacts updateContact = Contacts.get(params.id)
+        Contacts2 updateContact = Contacts2.get(params.id)
         Date dates = Date.parse("yyyy-MM-dd", params.date)
         updateContact.firstName = params.firstName
         updateContact.lastName = params.lastName
@@ -83,14 +85,14 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def show() {
 
-        Contacts contactDisplay = Contacts.get(params.id)
+        Contacts2 contactDisplay = Contacts2.get(params.id)
         return [contactDisplay: contactDisplay]
     }
 
     @Secured(["ROLE_USER"])
     def delete() {
 
-        Contacts deleteContact = Contacts.get(params.id)
+        Contacts2 deleteContact = Contacts2.get(params.id)
         deleteContact.delete(flush: true)
         redirect(action: 'list')
     }
@@ -106,7 +108,7 @@ class ContactsController {
             String fn = s[0]
             String ln = s[1]
 
-            List match = Contacts.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
+            List match = Contacts2.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
                     "%${params.value}%", "%${params.value}")
             render(view: '/contacts/list', model: [allCreatedContacts: match])
         } else {

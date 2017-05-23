@@ -19,7 +19,7 @@ class SignupController {
         }
 
         println "enters signup/index"
-        [user: new Contacts()]
+        [user: new Contacts2()]
     }
 
     @Secured('permitAll')

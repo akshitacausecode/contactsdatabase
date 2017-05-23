@@ -15,7 +15,7 @@
                 <div class="col-md-offset-1 col-md-8">
                     <h2>LIST OF CONTACTS</h2><hr>
                     <g:form name="filter" id="1" controller="Contacts" action="filterResult" style="display:inline-flex">
-                        <g:textField name="value" placeholder="search here:" class="form-control ph"/>
+                        <g:textField name="value" placeholder="search here:" class="form-control"/>
                         <g:submitButton name="search" class="btn btn-primary btn-style" value="Search"/>
                     </g:form>
                     <table class="table table-bordered text-center top-mrgn">
@@ -23,6 +23,7 @@
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Marking</th>
                         <th>Phone Number</th>
                         <th>Date of Birth</th>
                         <th>EDIT</th>
@@ -34,6 +35,7 @@
                                 <td>${personDetail.firstName}</td>
                                 <td>${personDetail.lastName}</td>
                                 <td>${personDetail.email}</td>
+                                <td>${personDetail.markData}</td>
                                 <td>${personDetail.phoneNumber}</td>
                                 <td>${personDetail.dob}</td>
                                 <td>
