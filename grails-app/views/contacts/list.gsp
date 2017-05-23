@@ -18,6 +18,10 @@
                         <g:textField name="value" placeholder="search here:" class="form-control"/>
                         <g:submitButton name="search" class="btn btn-primary btn-style" value="Search"/>
                     </g:form>
+                    <g:form name="groupValue" id="2" controller="Contacts" action="groupContact" style="display:inline-flex">
+                        <g:textField name="value" placeholder="Group Contacts by marking:" class="form-control"/>
+                        <g:submitButton name="search for group" class="btn btn-primary btn-style" value="Search"/>
+                    </g:form>
                     <table class="table table-bordered text-center top-mrgn">
                         <thead>
                         <th>First Name</th>

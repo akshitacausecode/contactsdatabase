@@ -101,7 +101,6 @@ class ContactsController {
     def filterResult() {
 
         if(params.id == "1") {
-            println "GBSDGBSBNSG34567"
             println params
 
             List s = params.value.split(" ") //if user enters full name
@@ -110,6 +109,18 @@ class ContactsController {
 
             List match = Contacts2.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
                     "%${params.value}%", "%${params.value}")
+            render(view: '/contacts/list', model: [allCreatedContacts: match])
+        } else {
+            redirect(action: 'list')
+        }
+    }
+
+    @Secured(["ROLE_USER"])
+    def groupContact () {
+        if (params.id == "2") {
+            println params
+
+            List match = Contacts2.findAllByMarkDataLike("%${params.value}%")
             render(view: '/contacts/list', model: [allCreatedContacts: match])
         } else {
             redirect(action: 'list')
