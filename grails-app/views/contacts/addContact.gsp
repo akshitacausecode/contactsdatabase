@@ -32,14 +32,6 @@
                                 </g:textField>
                                 <g:renderErrors bean="${user}" field="email" />
                             </div>
-                           <!-- <div class="form-group ${hasErrors(bean: user, field: 'email', 'has-error')}">
-                                <g:textField name="markData" placeholder="mark contacts" class="form-control" value="${user.markData}"
-                                     autofocus="email" required="true">
-                                </g:textField>
-                                <g:renderErrors bean="${user}" field="email" />
-                            </div> -->
-
-
                            <div class="form-group col-md-6 col-sm-6 col-xs-12 ${hasErrors(bean: user, field:'markpData',
                             'has-error')}">
                                 <label for="markData">Marking</label>
@@ -51,9 +43,6 @@
                                 </select>
                                 <g:renderErrors bean="${user}" field="markData"/>
                             </div>
-
-
-
                             <div class="form-group ${hasErrors(bean: user, field: 'phoneNumber', 'has-error')}">
                                 <g:textField name="phoneNumber" placeholder="Phone Number" class="form-control"
                                     value="${user.phoneNumber}" autofocus="phoneNumber" required="true">
@@ -66,7 +55,6 @@
                             </div>
                             <g:submitButton name="Add User" class="btn btn-success"></g:submitButton>
                         </g:form>
-                        </div>
                     </div>
                 </div>
             </div>
