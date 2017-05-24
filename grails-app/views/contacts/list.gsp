@@ -32,6 +32,7 @@
                         <th>Date of Birth</th>
                         <th>EDIT</th>
                         <th>DELETE</th>
+                        <th>Created By:</th>
                     </thead>
                     <g:if test="${allCreatedContacts}">
                         <g:each in="${allCreatedContacts}" var="personDetail">
@@ -50,6 +51,7 @@
                                   <g:link controller="Contacts" action="delete" id="${personDetail.id}"
                                   class="text-color" onclick="return confirm ('Are you sure?')">Delete</g:link>
                                 </td>
+                                <td>${personDetail.userInstance.username}</td>
                             </tr>
                         </g:each>
                     </g:if>

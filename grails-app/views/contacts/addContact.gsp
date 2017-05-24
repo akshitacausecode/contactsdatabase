@@ -10,10 +10,18 @@
                 </div>
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12">
+
+                                    <g:if test="${flash.error}" style="display: block">
+                                     <div class="alert alert-danger">
+                                        <b>${flash.error}</b>
+                                        </div>
+                                    </g:if>
+
                 <div class="well top-mrgn">
+
                     <div class="addContact">
                         <h3>ENTER DETAILS</h3>
-                        <g:form controller="Contacts" action="Saving">
+                        <g:form controller="Contacts" action="save">
                             <div class="form-group ${hasErrors(bean: user, field: 'firstName', 'has-error')}">
                                 <g:textField name="firstName" placeholder="First Name" class="form-control"
                                     value="${user.firstName}" autofocus="firstName" required="true">
@@ -51,7 +59,8 @@
                                 <g:renderErrors bean="${user}" field="phoneNumber" />
                             </div>
                             <div class="form-group ${hasErrors(bean: user, field: 'data', 'has-error')}">
-                                <label>Select Date Of Birth :</label><input type="date" class="font-clr" name="date" value="${user.dob}" required/>
+                                <label>Select Date Of Birth :</label><input type="date" class="font-clr" name="date"
+                                value="${user.dob}" required/>
                                 <g:renderErrors bean="${user}" field="dob" />
                             </div>
                             <g:submitButton name="Add User" class="btn btn-success"></g:submitButton>

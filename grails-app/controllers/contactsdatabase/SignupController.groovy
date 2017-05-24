@@ -13,34 +13,27 @@ class SignupController {
     @Secured('permitAll')
     def index() {
 
-        println(springSecurityService.isLoggedIn())
         if (springSecurityService.isLoggedIn()) {
             redirect(controller: 'Contacts', action: 'index')
         }
-
-        println "enters signup/index"
         [user: new Contacts2()]
     }
 
     @Secured('permitAll')
     def saving() {
 
-        println params
         User userInstance = User.findByUsername("params.username")
 
         if (!userInstance) {
             userInstance = new User([username: params.username, password: params.password])
             userInstance.save()
-            println params.errors
 
             if (userInstance.hasErrors()) {
                 render(view: '/signup/index', model: [user: userInstance])
                 return
             }
-            println "no errors"
 
             Role roleUser = Role.findByAuthority('ROLE_USER')
-            println roleUser
             UserRole.create(userInstance, roleUser)
 
             flash.message = "Welcome!\nYour username is: ${userInstance.username}" + "\n please login to continue"

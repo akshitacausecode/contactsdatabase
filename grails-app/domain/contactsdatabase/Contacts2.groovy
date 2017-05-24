@@ -16,8 +16,8 @@ class Contacts2 {
 
         firstName (blank: false, matches: "[a-zA-Z]+")
         lastName (blank: false, matches: "[a-zA-Z]+")
-        email (email: true, unique: true)
-        phoneNumber (blank: false, unique: true, matches: "[0-9]+", size:10..13)
+        email (email: true)
+        phoneNumber (blank: false, matches: "[0-9]+", size:10..13)
         dob (blank: false, date: true)
         dob max: new Date()
         markData(blank: false)

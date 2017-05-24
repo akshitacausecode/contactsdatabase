@@ -14,7 +14,6 @@ class ContactsController {
     def index() {
 
         User userInstance = springSecurityService.getCurrentUser()
-        println(userInstance)
         [user: userInstance]
     }
 
@@ -25,31 +24,47 @@ class ContactsController {
     }
 
     @Secured(["ROLE_USER"])
-    def Saving() {
+    def save() {
 
-        Date dates = Date.parse("yyyy-MM-dd", params.date)
-
-        Contacts2 contactsInstance = new Contacts2([userInstance: springSecurityService.currentUser.id,firstName: params.firstName,
-                                    lastName: params.lastName, email: params.email, phoneNumber: params.phoneNumber,
-                                    dob: dates, markData: params.markData]) //passing map
-
-        contactsInstance.save() //saves to database
-
-        println contactsInstance.errors
-
-        if (contactsInstance.hasErrors()) {
-            render(view: '/contacts/addContact', model: [user: contactsInstance])
-            return
+        User userInstance = springSecurityService.getCurrentUser()
+        params.userInstance = userInstance
+        def contactPresent = Contacts2.createCriteria().get {
+            and {
+                    eq("userInstance", userInstance)
+                    eq("email", "${params.email}")
+                    eq("phoneNumber", "${params.phoneNumber}")
+            }
         }
-        //flash message is displayed when values are stored into database
-        flash.message = "Contact details have been successfully saved!!!"
-        redirect(action : "list")
+
+        if (contactPresent) {
+            Contacts2 contactsInstance = new Contacts2(params);
+            flash.error = "This Contact is already present in your account"
+            render(view: '/contacts/addContact', model: [user: contactsInstance])
+        }
+        else {
+
+            params.dob = Date.parse("yyyy-MM-dd", params.date)
+            Contacts2 contactsInstance = new Contacts2(params);
+
+            contactsInstance.save() //saves to database
+            if (contactsInstance.hasErrors()) {                   //to check errors
+                render(view: '/contacts/addContact', model: [user: contactsInstance])
+                return
+            }
+            //flash message is displayed when values are stored into database
+            flash.message = "Contact details have been successfully saved!!!"
+            redirect(action: "list")
+
+        }
     }
 
     @Secured(["ROLE_USER"])
     def list() {
 
-            [allCreatedContacts: Contacts2.list(sort:"firstName")]
+        def currentuser= springSecurityService.currentUser
+        List contacts = Contacts2.findAllByUserInstance(currentuser)
+            //[allCreatedContacts: Contacts2.list(sort:"firstName")]
+        [allCreatedContacts: contacts]
     }
 
     @Secured(["ROLE_USER"])
@@ -62,7 +77,6 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def update() {
 
-        println params
         Contacts2 updateContact = Contacts2.get(params.id)
         Date dates = Date.parse("yyyy-MM-dd", params.date)
         updateContact.firstName = params.firstName
@@ -79,15 +93,14 @@ class ContactsController {
 
             return
         }
-        print("+++++update ends here++++")
         redirect (action: 'show', id: params.id)
     }
 
     @Secured(["ROLE_USER"])
     def show() {
 
-        Contacts2 contactDisplay = Contacts2.get(params.id)
-        return [contactDisplay: contactDisplay]
+            Contacts2 contactDisplay = Contacts2.get(id)
+            return [contactDisplay: contactDisplay]
     }
 
     @Secured(["ROLE_USER"])
@@ -102,15 +115,18 @@ class ContactsController {
     def filterResult() {
 
         if(params.id == "1") {
-            println params
+            if(params.value != null) {
+                List s = params.value.split(" ") //if user enters full name
+                String fn = s[0]
+                String ln = s[1]
 
-            List s = params.value.split(" ") //if user enters full name
-            String fn = s[0]
-            String ln = s[1]
-
-            List match = Contacts2.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
-                    "%${params.value}%", "%${params.value}")
-            render(view: '/contacts/list', model: [allCreatedContacts: match])
+                List match = Contacts2.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
+                        "%${params.value}%", "%${params.value}")
+                render(view: '/contacts/list', model: [allCreatedContacts: match])
+            }
+            else {
+                redirect(action: 'list')
+            }
         } else {
             redirect(action: 'list')
         }
@@ -119,10 +135,13 @@ class ContactsController {
     @Secured(["ROLE_USER"])
     def groupContact () {
         if (params.id == "2") {
-            println params
 
-            List match = Contacts2.findAllByMarkDataLike("%${params.value}%")
-            render(view: '/contacts/list', model: [allCreatedContacts: match])
+            if (params.value != null) {
+                List match = Contacts2.findAllByMarkDataLike("%${params.value}%")
+                render(view: '/contacts/list', model: [allCreatedContacts: match])
+            } else {
+                redirect(action: 'list')
+            }
         } else {
             redirect(action: 'list')
         }
