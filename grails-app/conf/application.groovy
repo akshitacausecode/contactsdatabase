@@ -28,3 +28,4 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 ]
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/"
+grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
