@@ -20,7 +20,7 @@ class SignupController {
     }
 
     @Secured('permitAll')
-    def saving() {
+    def save() {
 
         User userInstance = User.findByUsername("params.username")
 

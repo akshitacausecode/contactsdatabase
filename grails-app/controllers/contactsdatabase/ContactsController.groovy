@@ -1,11 +1,11 @@
 package contactsdatabase
 
 import com.contactsdatabase.User
-
-import java.text.SimpleDateFormat
-import java.util.Date
-import grails.plugin.springsecurity.SpringSecurityService
+//import java.text.SimpleDateFormat
+//import java.util.Date
+//import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
+
 class ContactsController {
 
     def springSecurityService
@@ -25,7 +25,6 @@ class ContactsController {
 
     @Secured(["ROLE_USER"])
     def save() {
-
         User userInstance = springSecurityService.getCurrentUser()
         params.userInstance = userInstance
         def contactPresent = Contacts2.createCriteria().get {
@@ -42,7 +41,6 @@ class ContactsController {
             render(view: '/contacts/addContact', model: [user: contactsInstance])
         }
         else {
-
             params.dob = Date.parse("yyyy-MM-dd", params.date)
             Contacts2 contactsInstance = new Contacts2(params);
 
