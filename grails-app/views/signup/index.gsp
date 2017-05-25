@@ -14,7 +14,7 @@
                 <div class="well top-mrgn">
                     <div class="addContact">
                         <h3>ENTER DETAILS</h3>
-                        <g:form controller="Signup" action="Saving">
+                        <g:form controller="Signup" action="save">
                             <div class="form-group ${hasErrors(bean: user, field: 'username', 'has-error')}">
                                 <g:textField name="username" placeholder="your email id" class="form-control"
                                   autofocus="username" required="true">

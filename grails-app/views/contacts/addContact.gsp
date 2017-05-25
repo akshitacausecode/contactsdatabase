@@ -11,14 +11,13 @@
             </div>
             <div class="col-md-offset-1 col-md-4 col-xs-12">
 
-                                    <g:if test="${flash.error}" style="display: block">
-                                     <div class="alert alert-danger">
-                                        <b>${flash.error}</b>
-                                        </div>
-                                    </g:if>
+                <g:if test="${flash.error}" style="display: block">
+                 <div class="alert alert-danger">
+                    <b>${flash.error}</b>
+                    </div>
+                </g:if>
 
                 <div class="well top-mrgn">
-
                     <div class="addContact">
                         <h3>ENTER DETAILS</h3>
                         <g:form controller="Contacts" action="save">
