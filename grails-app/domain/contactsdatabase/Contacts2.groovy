@@ -1,6 +1,6 @@
 package contactsdatabase
 
-import com.contactsdatabase.User
+import com.causecode.user.User
 
 class Contacts2 {
 

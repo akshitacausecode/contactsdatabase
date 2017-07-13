@@ -1,4 +1,4 @@
-package com.contactsdatabase
+package com.causecode.user
 
 import grails.gorm.DetachedCriteria
 import groovy.transform.ToString

@@ -1,12 +1,11 @@
 package contactsdatabase
 
-import com.contactsdatabase.Role
-import com.contactsdatabase.User
-import com.contactsdatabase.UserRole
+import com.causecode.user.Role
+import com.causecode.user.User
+import com.causecode.user.UserRole
 import grails.plugin.springsecurity.SpringSecurityService
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
-import groovy.mock.interceptor.MockFor
 import spock.lang.Specification
 
 /**

@@ -1,7 +1,9 @@
+grails.serverURL = 'http://localhost:8080'
+
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.contactsdatabase.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.contactsdatabase.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.contactsdatabase.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'UserRole'
+grails.plugin.springsecurity.authority.className = 'Role'
 
 
 // Added by the Spring Security Core plugin:
@@ -29,3 +31,33 @@ grails.plugin.springsecurity.filterChain.chainMap = [
 grails.plugin.springsecurity.logout.postOnly = false
 grails.plugin.springsecurity.successHandler.defaultTargetUrl = "/"
 grails.plugin.springsecurity.logout.afterLogoutUrl = "/"
+
+environments {
+	production {
+		grails.config.locations = [
+				"classpath:com/causecode/config/DefaultAsyncMailConfig.groovy",
+				"classpath:com/causecode/core/DefaultSpringSecurityCoreConfig.groovy",
+				"classpath:com/causecode/rest/DefaultSpringSecurityRestConfig.groovy",
+				"classpath:application.groovy",
+				"file:///root/localconfig/application-local.groovy"
+		]
+	}
+	development {
+		grails.config.locations = [
+				"classpath:com/causecode/config/DefaultAsyncMailConfig.groovy",
+				"classpath:com/causecode/core/DefaultSpringSecurityCoreConfig.groovy",
+				"classpath:com/causecode/rest/DefaultSpringSecurityRestConfig.groovy",
+				"classpath:application.groovy",
+				"classpath:application-local.groovy"
+		]
+	}
+	staging {
+		grails.config.locations = [
+				"classpath:com/causecode/config/DefaultAsyncMailConfig.groovy",
+				"classpath:com/causecode/core/DefaultSpringSecurityCoreConfig.groovy",
+				"classpath:com/causecode/rest/DefaultSpringSecurityRestConfig.groovy",
+				"classpath:application.groovy",
+				"file:///root/localconfig/application-local.groovy"
+		]
+	}
+}

@@ -1,4 +1,4 @@
-package com.contactsdatabase
+package com.causecode.user
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

@@ -1,6 +1,6 @@
 package contactsdatabase
 
-import com.contactsdatabase.User
+import com.causecode.user.User
 //import java.text.SimpleDateFormat
 //import java.util.Date
 //import grails.plugin.springsecurity.SpringSecurityService
@@ -34,7 +34,6 @@ class ContactsController {
                     eq("phoneNumber", "${params.phoneNumber}")
             }
         }
-
         if (contactPresent) {
             Contacts2 contactsInstance = new Contacts2(params);
             flash.error = "This Contact is already present in your account"

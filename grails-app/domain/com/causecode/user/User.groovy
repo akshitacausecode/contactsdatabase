@@ -1,4 +1,4 @@
-package com.contactsdatabase
+package com.causecode.user
 
 import grails.plugin.springsecurity.SpringSecurityService
 import groovy.transform.EqualsAndHashCode
@@ -43,7 +43,7 @@ class User implements Serializable {
 
 	static constraints = {
 		password blank: false, password: true
-		username blank: false, email: true, unique: true
+		username blank: false,  unique: true
 	}
 
 	static mapping = {

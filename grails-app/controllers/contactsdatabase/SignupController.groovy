@@ -1,9 +1,8 @@
 package contactsdatabase
 
-import com.contactsdatabase.Role
-import com.contactsdatabase.User
-import com.contactsdatabase.UserRole
-import grails.plugin.springsecurity.SpringSecurityService
+import com.causecode.user.Role
+import com.causecode.user.User
+import com.causecode.user.UserRole
 import grails.plugin.springsecurity.annotation.Secured
 
 class SignupController {

@@ -1,8 +1,8 @@
 package contactsdatabase
 
-import com.contactsdatabase.Role
-import com.contactsdatabase.User
-import com.contactsdatabase.UserRole
+import com.causecode.user.Role
+import com.causecode.user.User
+import com.causecode.user.UserRole
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
