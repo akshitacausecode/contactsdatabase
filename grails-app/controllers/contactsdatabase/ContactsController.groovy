@@ -1,18 +1,24 @@
 package contactsdatabase
 
+import com.causecode.RestfulController
 import com.causecode.user.User
+import grails.plugin.springsecurity.SpringSecurityService
+
 //import java.text.SimpleDateFormat
 //import java.util.Date
 //import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 
-class ContactsController {
+class ContactsController extends RestfulController {
 
-    def springSecurityService
+    SpringSecurityService springSecurityService
+
+    static namespace = 'v1'
 
     @Secured(["ROLE_USER"])
     def index() {
 
+        //User userInstance = SpringSecurityService.get(springSecurityService.principal.id)
         User userInstance = springSecurityService.getCurrentUser()
         [user: userInstance]
     }
@@ -23,10 +29,11 @@ class ContactsController {
         [user: new Contacts2()]
     }
 
-    @Secured(["ROLE_USER"])
+    @Secured(["permitAll"])
     def save() {
         User userInstance = springSecurityService.getCurrentUser()
         params.userInstance = userInstance
+        println "comes here"
         def contactPresent = Contacts2.createCriteria().get {
             and {
                     eq("userInstance", userInstance)

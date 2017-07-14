@@ -4,7 +4,7 @@ import com.causecode.user.User
 
 class Contacts2 {
 
-    User userInstance
+    //User userInstance
     String firstName
     String lastName
     String email
