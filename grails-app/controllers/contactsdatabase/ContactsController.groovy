@@ -10,7 +10,7 @@ import grails.plugin.springsecurity.SpringSecurityService
 //import grails.plugin.springsecurity.SpringSecurityService
 import grails.plugin.springsecurity.annotation.Secured
 
-@Secured(['permitAll'])
+@Secured(['ROLE_USER'])
 class ContactsController extends RestfulController {
 
     SpringSecurityService springSecurityService
@@ -22,28 +22,29 @@ class ContactsController extends RestfulController {
     }
 
     @Override
-    @Secured(['permitAll'])
-    def index() {
-
-        //User userInstance = SpringSecurityService.get(springSecurityService.principal.id)
+//    @Secured(['permitAll'])
+//    def index() {
+//
 //        User userInstance = springSecurityService.getCurrentUser()
 //        [user: userInstance]
-    }
+//    }
+//
+//    @Secured(['permitAll'])
+//    def addContact() {
+//
+//        [user: new Contacts2()]
+//    }
 
-    @Secured(['permitAll'])
-    def addContact() {
-
-        //[user: new Contacts2()]
-    }
-
-    @Secured(["permitAll"])
+    @Secured(["ROLE_USER"])
     def save() {
-        //User userInstance = springSecurityService.getCurrentUser()
-        //params.userInstance = userInstance
+
+        User userInstance = springSecurityService.getCurrentUser()
+        println userInstance
+        params.userInstance = userInstance
         params.putAll(request.JSON)
         def contactPresent = Contacts2.createCriteria().get {
             and {
-                    //eq("userInstance", userInstance)
+                    eq("userInstance", userInstance)
                     eq("email", "${params.email}")
                     eq("phoneNumber", "${params.phoneNumber}")
             }
@@ -52,29 +53,25 @@ class ContactsController extends RestfulController {
             Contacts2 contactsInstance = new Contacts2(params)
             flash.error = "This Contact is already present in your account"
             //render(view: '/contacts/addContact', model: [user: contactsInstance])
-            render 'already present'
+            render 'this contact is already present in your account'
 
-        }
-        else {
+        } else {
             //params.dob = Date.parse("yyyy-MM-dd", params.date)
             Contacts2 contactsInstance = new Contacts2(params)
-
             contactsInstance.save() //saves to database
             if (contactsInstance.hasErrors()) {                   //to check errors
-                render "errors"
+                render contactsInstance.errors as JSON
                 // render(view: '/contacts/addContact', model: [user: contactsInstance])
                 //return
             }
             //flash message is displayed when values are stored into database
             flash.message = "Contact details have been successfully saved!!!"
             //redirect(action: "list")
-
-        render 'pass'
-
+            render 'pass'
         }
     }
 
-    @Secured(['permitAll'])
+    @Secured(['ROLE_USER'])
     def list() {
 
         def currentuser= springSecurityService.currentUser
@@ -85,16 +82,17 @@ class ContactsController extends RestfulController {
 
     @Secured(["permitAll"])
     def edit() {
-
         def editContact = Contacts2.get(params.id)
         [editContact: editContact]
     }
 
-    @Secured(["permitAll"])
+    @Secured(["ROLE_USER"])
     def update() {
 
         params.putAll(request.JSON)
-        if (params.id) {
+        def currentuser = springSecurityService.getCurrentUser()
+        def checkContact = Contacts2.findAllByUserInstanceAndId(currentuser, params.id)
+        if(checkContact) {
             Contacts2 updateContact = Contacts2.get(params.id)
             updateContact.firstName = params.firstName
             updateContact.lastName = params.lastName
@@ -117,59 +115,59 @@ class ContactsController extends RestfulController {
         }
     }
 
-    @Secured(["permitAll"])
+    @Secured(["ROLE_USER"])
     def show() {
 
-        if (params.id) {
-            Contacts2 showValue = Contacts2.get(params.id)
-            respond([result: showValue])
-        }else {
-            def message = ['message': 'please give a valid parameter']
-            render message as JSON
-        }
-//            Contacts2 contactDisplay = Contacts2.get(id)
+        def currentuser= springSecurityService.currentUser
+            def showValue = Contacts2.findAllByUserInstanceAndId(currentuser, params.id)
+            //Contacts2 showValue = Contacts2.get(params.id)
+            if(showValue) {
+                respond([result: showValue])
+            }else {
+                def message = ['message': 'please give a valid parameter']
+                render message as JSON
+            }
+//        Contacts2 contactDisplay = Contacts2.get(id)
 //            return [contactDisplay: contactDisplay]
-    }
+        }
 
-    @Secured(["permitAll"])
+    @Secured(["ROLE_USER"])
     def delete() {
 
-        if (params.id) {
-            if (Contacts2.get(params.id)) {
-                Contacts2 deleteValue = Contacts2.get(params.id)
+        def currentuser = springSecurityService.currentUser
+        println currentuser
+        println params.id
+            if (Contacts2.findByUserInstanceAndId(currentuser, params.id)) {
+                Contacts2 deleteValue = Contacts2.findByUserInstanceAndId(currentuser, params.id)
                 deleteValue.delete(flush: true)
                 def message = [['result': 'value deleted']]
                 render message as JSON
             }else {
-                def message = ['message': 'Value not present in the database, nothing to delete']
+                def message = ['message': 'Provide a valid data']
                 render message as JSON
             }
-        } else {
-            def message = ['message': 'please give a valid parameter']
-            render message as JSON
-        }
         //redirect(action: 'list')
     }
 
-    @Secured(["permitAll"])
     def filterResult() {
+        params.putAll(request.JSON)
 
         if(params.id == "1") {
             if(params.value != null) {
                 List s = params.value.split(" ") //if user enters full name
                 String fn = s[0]
                 String ln = s[1]
-
-                List match = Contacts2.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLike("%${fn}%", "%${ln}%",
-                        "%${params.value}%", "%${params.value}")
-                render(view: '/contacts/list', model: [allCreatedContacts: match])
+                def currentuser = springSecurityService.currentUser
+                List match = Contacts2.findAllByFirstNameLikeOrLastNameLikeOrPhoneNumberLikeAndUserInstance("%${fn}%", "%${ln}%",
+                        "%${params.value}%", "%${params.value}", currentuser)
+                //render(view: '/contacts/list', model: [allCreatedContacts: match])
+                render match as JSON
             }
             else {
-                redirect(action: 'list')
+                //redirect(action: 'list')
             }
         } else {
-            redirect(action: 'list')
-        }
+            //redirect(action: 'list')
     }
 
     @Secured(["ROLE_USER"])
@@ -178,12 +176,15 @@ class ContactsController extends RestfulController {
 
             if (params.value != null) {
                 List match = Contacts2.findAllByMarkDataLike("%${params.value}%")
-                render(view: '/contacts/list', model: [allCreatedContacts: match])
+                render match as JSON
+                //render(view: '/contacts/list', model: [allCreatedContacts: match])
             } else {
-                redirect(action: 'list')
+                render "no search result found"
+                //redirect(action: 'list')
             }
         } else {
-            redirect(action: 'list')
+            render "no search result found"
+            //redirect(action: 'list')
         }
     }
 }
