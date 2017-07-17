@@ -10,7 +10,7 @@ class Contacts2 {
     String email
     String phoneNumber
     String markData
-    Date dob
+    //Date dob
 
     static constraints = {
 
@@ -18,14 +18,14 @@ class Contacts2 {
         lastName (blank: false, matches: "[a-zA-Z]+")
         email (email: true)
         phoneNumber (blank: false, matches: "[0-9]+", size:10..13)
-        dob (blank: false, date: true)
-        dob max: new Date()
+        //dob (blank: false, date: true)
+        //dob max: new Date()
         markData(blank: false)
     }
 
     static mapping = {
         sort firstName: "asc"
-        dob type: 'date'
+       // dob type: 'date'
 
     }
 }
